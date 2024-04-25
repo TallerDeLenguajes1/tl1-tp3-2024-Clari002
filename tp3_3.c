@@ -7,13 +7,18 @@
 
 int main()
 {
-    char *V[TAMA];
+    char **V;
     char *buff;
-    int i;
+    int i, cant;
 
     buff= (char *) malloc(100*sizeof(char));//reservo memoria para buff
+    printf("Ingrese la cantidad de nombres: ");
+    scanf("%d",&cant);
+    getchar();
+
+    V = (char **)malloc(cant * sizeof(char *));
     printf("------------------CARGAR NOMBRES------------\n");
-    for (i = 0; i < TAMA; i++)
+    for (i = 0; i < cant; i++)
     { 
         printf("Nombre %d%c: ", i+1, 167);
         gets(buff);    
@@ -23,17 +28,18 @@ int main()
     printf("\n");
 
     printf("------------------NOMBRES CARGADOS------------");
-    for (i = 0; i < TAMA; i++)
+    for (i = 0; i < cant; i++)
     {
         printf("\nNombre %d%c: %s", i+1,167, V[i]);
        //otra forma de mostrar puts(V[i]);
     }
 
-    for (i = 0; i < TAMA; i++)
+    for (i = 0; i < cant; i++)
     {
         free(V[i]);
     }
     free(buff);
+    free(V);
 
     return 0;
 }
